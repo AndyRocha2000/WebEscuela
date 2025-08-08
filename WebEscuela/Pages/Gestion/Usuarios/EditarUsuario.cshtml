@@ -1,0 +1,55 @@
+﻿@page
+@model WebEscuela.Pages.Gestion.Usuarios.EditarUsuarioModel
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<h1>Editar Usuario</h1>
+
+<form method="post" class="mb-4">
+
+    <input type="hidden" asp-for="Usuario.Id" />
+
+    <div class="form-group mb-3">
+        <label asp-for="Persona.NombreCompleto"></label>
+        <input asp-for="Persona.NombreCompleto" class="form-control" required />
+        <span asp-validation-for="Persona.NombreCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Persona.CorreoElectronico"></label>
+        <input asp-for="Persona.CorreoElectronico" type="email" class="form-control" required />
+        <span asp-validation-for="Persona.CorreoElectronico" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Contraseña</label>
+        <input asp-for="Usuario.Contrasenia" type="password" class="form-control" />
+        <small class="form-text text-muted">Dejar vacío para no cambiar la contraseña</small>
+        <span asp-validation-for="Usuario.Contrasenia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Usuario.RolId"></label>
+        <select asp-for="Usuario.RolId" class="form-control" required>
+            <option value="">Seleccione un rol</option>
+            @foreach (var rol in Model.RolesDisponibles)
+            {
+                <option value="@rol.Id" selected="@(rol.Id == Model.Usuario.RolId ? "selected" : null)">@rol.Nombre</option>
+            }
+        </select>
+        <span asp-validation-for="Usuario.RolId" class="text-danger"></span>
+    </div>
+
+    <div id="advertenciaCambioRol" class="alert alert-warning @(Model.MostrarAdvertencia ? "" : "d-none")" role="alert">
+        ¡Atención! No puede cambiar el rol porque hay datos relacionados que impiden el cambio.
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-page="/Gestion/Usuarios" class="btn btn-secondary">Cancelar</a>
+    <input type="hidden" asp-for="Persona.Dni" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

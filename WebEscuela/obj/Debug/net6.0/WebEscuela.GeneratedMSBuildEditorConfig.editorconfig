@@ -1,0 +1,73 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WebEscuela
+build_property.RootNamespace = WebEscuela
+build_property.ProjectDir = C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Carreras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxDYXJyZXJhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Materias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxNYXRlcmlhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxVc3Vhcmlvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios/AgregarUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxVc3Vhcmlvc1xBZ3JlZ2FyVXN1YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios/EditarUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxVc3Vhcmlvc1xFZGl0YXJVc3VhcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ovfozcotd2

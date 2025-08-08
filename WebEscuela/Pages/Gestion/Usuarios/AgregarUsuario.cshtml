@@ -1,0 +1,80 @@
+﻿@page
+@model WebEscuela.Pages.Gestion.Usuarios.AgregarUsuarioModel
+@{
+    ViewData["Title"] = "Agregar Usuario";
+}
+<h1>Agregar Usuario</h1>
+
+<form method="post" asp-page-handler="Agregar" class="mb-4">
+    <div class="form-group mb-3">
+        <label>Nombre completo</label>
+        <input name="nombreCompleto" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label>DNI</label>
+        <input name="dni" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label>Correo electrónico</label>
+        <input type="email" name="correoElectronico" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label>Fecha de nacimiento</label>
+        <input type="date" name="fechaNacimiento" class="form-control" required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Rol</label>
+        <select name="rolId" id="rolSelector" class="form-control" required onchange="actualizarCamposPorRol()">
+            <option value="">Seleccione un rol</option>
+            @foreach (var rol in Model.RolesDisponibles)
+            {
+                <option value="@rol.Id">@rol.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div id="campoCarrera" class="form-group mb-3 d-none">
+        <label>Carrera</label>
+        <select name="carreraId" class="form-control">
+            <option value="">-- Seleccione una carrera --</option>
+            @foreach (var carrera in Model.CarrerasDisponibles)
+            {
+                <option value="@carrera.Id">@carrera.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div id="campoTitulo" class="form-group mb-3 d-none">
+        <label>Título</label>
+        <input name="titulo" class="form-control" />
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-success">Agregar Usuario</button>
+        <a asp-page="/Gestion/Usuarios/Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        function actualizarCamposPorRol() {
+            const rol = document.getElementById('rolSelector').value;
+            const campoCarrera = document.getElementById('campoCarrera');
+            const campoTitulo = document.getElementById('campoTitulo');
+
+            campoCarrera.classList.add('d-none');
+            campoTitulo.classList.add('d-none');
+
+            if (rol === "3") {
+                campoTitulo.classList.remove('d-none');
+            } else if (rol === "2") {
+                campoCarrera.classList.remove('d-none');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            actualizarCamposPorRol();
+        });
+    </script>
+}

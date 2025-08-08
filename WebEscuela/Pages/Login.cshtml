@@ -1,0 +1,32 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Inicio Sesion";
+}
+
+<h2>Inicio de Sesión</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="CorreoElectronico" class="form-label">Correo Electrónico</label>
+        <input asp-for="CorreoElectronico" class="form-control" />
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Contrasenia" class="form-label">Contraseña</label>
+        <input asp-for="Contrasenia" type="password" class="form-control" />
+        <span asp-validation-for="Contrasenia" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.MensajeError))
+{
+    <div class="alert alert-danger mt-3">@Model.MensajeError</div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

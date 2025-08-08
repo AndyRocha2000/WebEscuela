@@ -1,0 +1,14 @@
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\bin\Debug\net6.0\WebEscuela.Repository.deps.json
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\bin\Debug\net6.0\WebEscuela.Repository.runtimeconfig.json
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\bin\Debug\net6.0\WebEscuela.Repository.dll
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\bin\Debug\net6.0\WebEscuela.Repository.pdb
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.csproj.AssemblyReference.cache
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.AssemblyInfoInputs.cache
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.AssemblyInfo.cs
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.csproj.CoreCompileInputs.cache
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.dll
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\refint\WebEscuela.Repository.dll
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.pdb
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\WebEscuela.Repository.genruntimeconfig.cache
+C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela.Repository\obj\Debug\net6.0\ref\WebEscuela.Repository.dll
