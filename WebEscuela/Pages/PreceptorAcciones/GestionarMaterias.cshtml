@@ -1,0 +1,78 @@
+﻿@page
+@model WebEscuela.Pages.PreceptorAcciones.GestionarMateriasModel
+@{
+    ViewData["Title"] = "Gestión de Materias";
+}
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="display-5">Gestión de Inscripciones</h1>
+            <p class="text-muted">Carrera: <strong>@Model.CarreraNombre</strong></p>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                @if (Model.Materias.Any())
+                {
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="ps-4">Materia</th>
+                                <th>Año</th>
+                                <th>Cuatrimestre</th>
+                                <th>Docente Titular</th>
+                                <th class="text-center">Cupo</th>
+                                <th class="text-center pe-4">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Materias)
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="fw-bold">@item.Nombre</div>
+                                    </td>
+                                    <td>@item.Anio° Año</td>
+                                    <td>@(item.Cuatrimestre == 1 ? "Cuatrimestral" : "Anual")</td>
+                                    <td>
+                                        <i class="bi bi-person-badge me-1"></i> @item.DocenteNombre
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge rounded-pill bg-light text-dark border">
+                                            @item.CupoMaximo
+                                        </span>
+                                    </td>
+                                    <td class="text-center pe-4">
+                                        @* Redirige a la lista de alumnos inscriptos en esta materia *@
+                                        <a asp-page="./GestionarInscripciones"
+                                           asp-route-materiaId="@item.Id"
+                                           asp-route-materiaNombre="@item.Nombre"
+                                           class="btn btn-primary btn-sm shadow-sm px-3">
+                                            <i class="bi bi-people-fill me-2"></i> Gestionar Alumnos
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-info m-4">
+                        <i class="bi bi-info-circle me-2"></i> No se encontraron materias para mostrar en tu carrera.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

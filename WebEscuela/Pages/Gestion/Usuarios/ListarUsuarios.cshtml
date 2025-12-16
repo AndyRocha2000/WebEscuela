@@ -1,0 +1,145 @@
+﻿@page
+@model ListarUsuariosModel
+@using System.Globalization
+@using WebEscuela.Service.DTOs
+
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5">Gestión de Usuarios</h1>
+        <a asp-page="./AgregarUsuario" class="btn btn-primary shadow">
+            <i class="bi bi-person-plus-fill me-2"></i> Crear nuevo usuario
+        </a>
+    </div>
+
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover border">
+            <thead class="table-light">
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>DNI</th>
+                    <th>Rol</th>
+                    <th>Correo Electrónico</th>
+                    <th>F. Nacimiento</th>
+                    <th class="text-center">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @* BUCLE PRINCIPAL: Llena la lista con los Usuarios *@
+                @foreach (UsuarioListadoDTO item in Model.Usuarios)
+                {
+                    <tr>
+                        <td>@item.NombreCompleto</td>
+                        <td>@item.Dni</td>
+                        <td>
+                            <span class="badge @(item.Rol == "Administrador" ? "bg-danger" :
+                                                 item.Rol == "Docente" ? "bg-info text-dark" :
+                                                 "bg-success")">
+                                @item.Rol
+                            </span>
+                        </td>
+                        <td>@item.Email</td>
+
+                        @* ⭐️ SOLUCIÓN DE FECHA: Si es obligatorio (DateTime) *@
+                        <td>@item.FechaNacimiento.ToString("dd/MM/yyyy", CultureInfo.GetCultureInfo("es-AR"))</td>
+
+                        <td class="text-center">
+                            <div class="dropdown position-static">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="userActions_@item.Id" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userActions_@item.Id">
+                                    <li><a class="dropdown-item" asp-page="./EditarUsuario" asp-route-usuarioId="@item.Id">Modificar</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        @* Boton de Eliminar usa modal unico *@
+                                        <button type="button"
+                                                class="dropdown-item text-danger delete-btn"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deleteModalBase"
+                                                data-id="@item.Id"
+                                                data-nombre="@item.NombreCompleto"
+                                                data-dni="@item.Dni">
+                                            Eliminar
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @* ⭐️ Modal unico para la Eliminacion de Usuario *@
+    <div class="modal fade" id="deleteModalBase" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación de Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar al usuario
+                    <strong id="usuarioNombrePlaceholder"></strong>
+                    (<span id="usuarioDniPlaceholder"></span>)?
+                    Esta acción es irreversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                    <form id="deleteFormBase" method="post" asp-page-handler="Delete">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Logica JavaScript que llena el Eliminar Materia
+            $('#deleteModalBase').on('show.bs.modal', function (event) {
+
+                var button = $(event.relatedTarget);
+
+                var usuarioId = button.data('id');
+                var usuarioNombre = button.data('nombre');
+                var usuarioDni = button.data('dni');
+
+                // 2. Inyectar datos en el mensaje de confirmación
+                $('#usuarioNombrePlaceholder').text(usuarioNombre);
+                $('#usuarioDniPlaceholder').text(usuarioDni);
+
+                // Configura el URL para el Post
+                var form = $('#deleteFormBase');
+                form.attr('action', '?handler=Delete&id=' + usuarioId);
+            });
+        });
+    </script>
+}

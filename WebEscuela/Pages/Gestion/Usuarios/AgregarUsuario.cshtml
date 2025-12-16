@@ -1,75 +1,133 @@
 ﻿@page
 @model WebEscuela.Pages.Gestion.Usuarios.AgregarUsuarioModel
 @{
-    ViewData["Title"] = "Agregar Usuario";
+    ViewData["Title"] = "Crear Nuevo Usuario";
 }
-<h1>Agregar Usuario</h1>
 
-<form method="post" asp-page-handler="Agregar" class="mb-4">
-    <div class="form-group mb-3">
-        <label>Nombre completo</label>
-        <input name="nombreCompleto" class="form-control" required />
-    </div>
-    <div class="form-group mb-3">
-        <label>DNI</label>
-        <input name="dni" class="form-control" required />
-    </div>
-    <div class="form-group mb-3">
-        <label>Correo electrónico</label>
-        <input type="email" name="correoElectronico" class="form-control" required />
-    </div>
-    <div class="form-group mb-3">
-        <label>Fecha de nacimiento</label>
-        <input type="date" name="fechaNacimiento" class="form-control" required />
-    </div>
+<div class="container-fluid mt-4">
+    <h1 class="display-5">Crear Nuevo Usuario</h1>
+    <hr />
 
-    <div class="form-group mb-3">
-        <label>Rol</label>
-        <select name="rolId" id="rolSelector" class="form-control" required onchange="actualizarCamposPorRol()">
-            <option value="">Seleccione un rol</option>
-            @foreach (var rol in Model.RolesDisponibles)
-            {
-                <option value="@rol.Id">@rol.Nombre</option>
-            }
-        </select>
-    </div>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-    <div id="campoCarrera" class="form-group mb-3 d-none">
-        <label>Carrera</label>
-        <select name="carreraId" class="form-control">
-            <option value="">-- Seleccione una carrera --</option>
-            @foreach (var carrera in Model.CarrerasDisponibles)
-            {
-                <option value="@carrera.Id">@carrera.Nombre</option>
-            }
-        </select>
-    </div>
+        @* Mensajes de error *@
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> @Model.ErrorMessage
+            </div>
+        }
 
-    <div id="campoTitulo" class="form-group mb-3 d-none">
-        <label>Título</label>
-        <input name="titulo" class="form-control" />
-    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="mb-3">Datos Personales</h3>
 
-    <div class="form-group mt-4">
-        <button type="submit" class="btn btn-success">Agregar Usuario</button>
-        <a asp-page="/Gestion/Usuarios/Index" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
+                <div class="form-group mb-3">
+                    <label asp-for="Input.NombreCompleto"></label>
+                    <input asp-for="Input.NombreCompleto" class="form-control" />
+                    <span asp-validation-for="Input.NombreCompleto" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Dni"></label>
+                    <input asp-for="Input.Dni" class="form-control" />
+                    <span asp-validation-for="Input.Dni" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.CorreoElectronico"></label>
+                    <input asp-for="Input.CorreoElectronico" class="form-control" />
+                    <span asp-validation-for="Input.CorreoElectronico" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.FechaNacimiento"></label>
+                    <input asp-for="Input.FechaNacimiento" class="form-control" />
+                    <span asp-validation-for="Input.FechaNacimiento" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="mb-3">Credenciales y Rol</h3>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.RolId"></label>
+                    <select asp-for="Input.RolId"
+                            asp-items="Model.Input.RolesDisponibles"
+                            class="form-control"
+                            id="rolSelector"
+                            onchange="actualizarCamposPorRol()">
+                        <option value="">Seleccione un rol</option>
+                    </select>
+                    <span asp-validation-for="Input.RolId" class="text-danger"></span>
+                </div>
+
+                @* CAMPO CARRERA (Disponible solo para Alumnos) *@
+                <div id="campoCarrera" class="form-group mb-3 d-none border p-3 rounded">
+                    <label asp-for="Input.CarreraId"></label>
+                    <select asp-for="Input.CarreraId"
+                            asp-items="Model.Input.CarrerasDisponibles"
+                            class="form-control">
+                        <option value="">-- Seleccione una carrera --</option>
+                    </select>
+                    <span asp-validation-for="Input.CarreraId" class="text-danger"></span>
+                </div>
+
+                @* CAMPO CARRERA (Disponible solo para Preceptor) *@
+                <div id="campoCarreraPreceptor" class="form-group mb-3 d-none border p-3 rounded">
+                    <label asp-for="Input.CarreraPreceptorId"></label>
+                    <select asp-for="Input.CarreraPreceptorId"
+                            asp-items="Model.Input.CarrerasPreceptorDisponibles"
+                            class="form-control">
+                        <option value="">-- Seleccione una carrera --</option>
+                    </select>
+                    <span asp-validation-for="Input.CarreraPreceptorId" class="text-danger"></span>
+                </div>
+
+                @* CAMPO TITULO (Disponible solo para Docente) *@
+                <div id="campoTitulo" class="form-group mb-3">
+                    <label asp-for="Input.Titulo"></label>
+                    <input asp-for="Input.Titulo" class="form-control" />
+                    <span asp-validation-for="Input.Titulo" class="text-danger"></span>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-person-plus-fill me-2"></i> Crear Usuario
+            </button>
+            <a asp-page="./ListarUsuarios" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script>
         function actualizarCamposPorRol() {
             const rol = document.getElementById('rolSelector').value;
             const campoCarrera = document.getElementById('campoCarrera');
             const campoTitulo = document.getElementById('campoTitulo');
+            const campoCarreraPreceptor = document.getElementById('campoCarreraPreceptor');
 
+            // Ocultar todos los campos condicionales
             campoCarrera.classList.add('d-none');
             campoTitulo.classList.add('d-none');
+            campoCarreraPreceptor.classList.add('d-none');
 
-            if (rol === "3") {
-                campoTitulo.classList.remove('d-none');
-            } else if (rol === "2") {
+            // Logica basada en el Rol Seleccionado (2=Alumno, 3=Docente, 4=Preceptor)
+
+            if (rol === "2") {
                 campoCarrera.classList.remove('d-none');
+            } else if (rol === "3") {
+                campoTitulo.classList.remove('d-none');
+            } else if (rol === "4") {
+                campoCarreraPreceptor.classList.remove('d-none');
             }
         }
 

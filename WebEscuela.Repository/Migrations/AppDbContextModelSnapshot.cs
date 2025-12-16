@@ -26,12 +26,15 @@ namespace WebEscuela.Repository.Migrations
                     b.Property<int>("DuracionAnios")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ModalidadId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PreceptorId")
+                    b.Property<int?>("PreceptorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Sigla")
@@ -44,9 +47,19 @@ namespace WebEscuela.Repository.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TurnoId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ModalidadId");
+
                     b.HasIndex("PreceptorId");
+
+                    b.HasIndex("Sigla")
+                        .IsUnique();
+
+                    b.HasIndex("TurnoId");
 
                     b.ToTable("Carreras");
                 });
@@ -98,11 +111,16 @@ namespace WebEscuela.Repository.Migrations
                     b.Property<DateTime>("FechaInscripcion")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TipoCursadoId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("AlumnoId", "MateriaId");
 
                     b.HasIndex("EstadoInscripcionId");
 
                     b.HasIndex("MateriaId");
+
+                    b.HasIndex("TipoCursadoId");
 
                     b.ToTable("Inscripciones");
                 });
@@ -125,7 +143,7 @@ namespace WebEscuela.Repository.Migrations
                     b.Property<int>("CupoMaximo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DocenteId")
+                    b.Property<int?>("DocenteId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")
@@ -142,6 +160,39 @@ namespace WebEscuela.Repository.Migrations
                     b.ToTable("Materias");
                 });
 
+            modelBuilder.Entity("WebEscuela.Repository.Models.Modalidad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Modalidades");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Presencial"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Virtual"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Semipresencial"
+                        });
+                });
+
             modelBuilder.Entity("WebEscuela.Repository.Models.Persona", b =>
                 {
                     b.Property<int>("Id")
@@ -153,9 +204,10 @@ namespace WebEscuela.Repository.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Dni")
+                    b.Property<string>("Dni")
+                        .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime");
@@ -171,6 +223,9 @@ namespace WebEscuela.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Dni")
+                        .IsUnique();
+
                     b.ToTable("Personas");
 
                     b.HasDiscriminator<string>("TipoPersona").HasValue("Base");
@@ -180,7 +235,7 @@ namespace WebEscuela.Repository.Migrations
                         {
                             Id = 1,
                             CorreoElectronico = "admin@escuela.com",
-                            Dni = 12345678,
+                            Dni = "12345678",
                             FechaNacimiento = new DateTime(1980, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NombreCompleto = "Administrador Principal"
                         });
@@ -229,6 +284,72 @@ namespace WebEscuela.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebEscuela.Repository.Models.TipoCursado", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TiposCursado");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Regular"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Libre"
+                        });
+                });
+
+            modelBuilder.Entity("WebEscuela.Repository.Models.Turno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Turnos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Matutina"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Vespertina"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Nocturna"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Diurna"
+                        });
+                });
+
             modelBuilder.Entity("WebEscuela.Repository.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -240,22 +361,13 @@ namespace WebEscuela.Repository.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CorreoElectronico")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Dni")
-                        .HasMaxLength(20)
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("PersonaId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RolId")
+                    b.Property<bool>("RequiereCambioContrasenia")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("RolId1")
+                    b.Property<int>("RolId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -265,8 +377,6 @@ namespace WebEscuela.Repository.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.HasIndex("RolId1");
-
                     b.ToTable("Usuarios");
 
                     b.HasData(
@@ -274,9 +384,8 @@ namespace WebEscuela.Repository.Migrations
                         {
                             Id = 1,
                             Contrasenia = "12345678",
-                            CorreoElectronico = "admin@escuela.com",
-                            Dni = 12345678,
                             PersonaId = 1,
+                            RequiereCambioContrasenia = true,
                             RolId = 1
                         });
                 });
@@ -307,13 +416,28 @@ namespace WebEscuela.Repository.Migrations
 
             modelBuilder.Entity("WebEscuela.Repository.Models.Carrera", b =>
                 {
-                    b.HasOne("WebEscuela.Repository.Models.Usuario", "Preceptor")
-                        .WithMany()
-                        .HasForeignKey("PreceptorId")
+                    b.HasOne("WebEscuela.Repository.Models.Modalidad", "Modalidad")
+                        .WithMany("Carreras")
+                        .HasForeignKey("ModalidadId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("WebEscuela.Repository.Models.Usuario", "Preceptor")
+                        .WithMany()
+                        .HasForeignKey("PreceptorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebEscuela.Repository.Models.Turno", "Turno")
+                        .WithMany("Carreras")
+                        .HasForeignKey("TurnoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Modalidad");
+
                     b.Navigation("Preceptor");
+
+                    b.Navigation("Turno");
                 });
 
             modelBuilder.Entity("WebEscuela.Repository.Models.Inscripcion", b =>
@@ -321,7 +445,7 @@ namespace WebEscuela.Repository.Migrations
                     b.HasOne("WebEscuela.Repository.Models.Alumno", "Alumno")
                         .WithMany("Inscripciones")
                         .HasForeignKey("AlumnoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WebEscuela.Repository.Models.EstadoInscripcion", "EstadoInscripcion")
@@ -333,7 +457,13 @@ namespace WebEscuela.Repository.Migrations
                     b.HasOne("WebEscuela.Repository.Models.Materia", "Materia")
                         .WithMany("Inscripciones")
                         .HasForeignKey("MateriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WebEscuela.Repository.Models.TipoCursado", "TipoCursado")
+                        .WithMany("Inscripciones")
+                        .HasForeignKey("TipoCursadoId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Alumno");
@@ -341,12 +471,14 @@ namespace WebEscuela.Repository.Migrations
                     b.Navigation("EstadoInscripcion");
 
                     b.Navigation("Materia");
+
+                    b.Navigation("TipoCursado");
                 });
 
             modelBuilder.Entity("WebEscuela.Repository.Models.Materia", b =>
                 {
-                    b.HasOne("WebEscuela.Repository.Models.Carrera", null)
-                        .WithMany()
+                    b.HasOne("WebEscuela.Repository.Models.Carrera", "Carrera")
+                        .WithMany("Materias")
                         .HasForeignKey("CarreraId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -354,8 +486,9 @@ namespace WebEscuela.Repository.Migrations
                     b.HasOne("WebEscuela.Repository.Models.Docente", "Docente")
                         .WithMany("Materias")
                         .HasForeignKey("DocenteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Carrera");
 
                     b.Navigation("Docente");
                 });
@@ -365,18 +498,14 @@ namespace WebEscuela.Repository.Migrations
                     b.HasOne("WebEscuela.Repository.Models.Persona", "Persona")
                         .WithOne("Usuario")
                         .HasForeignKey("WebEscuela.Repository.Models.Usuario", "PersonaId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebEscuela.Repository.Models.Rol", "Rol")
-                        .WithMany()
+                        .WithMany("Usuarios")
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("WebEscuela.Repository.Models.Rol", null)
-                        .WithMany("Usuarios")
-                        .HasForeignKey("RolId1");
 
                     b.Navigation("Persona");
 
@@ -385,11 +514,20 @@ namespace WebEscuela.Repository.Migrations
 
             modelBuilder.Entity("WebEscuela.Repository.Models.Alumno", b =>
                 {
-                    b.HasOne("WebEscuela.Repository.Models.Carrera", null)
-                        .WithMany()
+                    b.HasOne("WebEscuela.Repository.Models.Carrera", "Carrera")
+                        .WithMany("Alumnos")
                         .HasForeignKey("CarreraId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Carrera");
+                });
+
+            modelBuilder.Entity("WebEscuela.Repository.Models.Carrera", b =>
+                {
+                    b.Navigation("Alumnos");
+
+                    b.Navigation("Materias");
                 });
 
             modelBuilder.Entity("WebEscuela.Repository.Models.EstadoInscripcion", b =>
@@ -402,6 +540,11 @@ namespace WebEscuela.Repository.Migrations
                     b.Navigation("Inscripciones");
                 });
 
+            modelBuilder.Entity("WebEscuela.Repository.Models.Modalidad", b =>
+                {
+                    b.Navigation("Carreras");
+                });
+
             modelBuilder.Entity("WebEscuela.Repository.Models.Persona", b =>
                 {
                     b.Navigation("Usuario")
@@ -411,6 +554,16 @@ namespace WebEscuela.Repository.Migrations
             modelBuilder.Entity("WebEscuela.Repository.Models.Rol", b =>
                 {
                     b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("WebEscuela.Repository.Models.TipoCursado", b =>
+                {
+                    b.Navigation("Inscripciones");
+                });
+
+            modelBuilder.Entity("WebEscuela.Repository.Models.Turno", b =>
+                {
+                    b.Navigation("Carreras");
                 });
 
             modelBuilder.Entity("WebEscuela.Repository.Models.Alumno", b =>

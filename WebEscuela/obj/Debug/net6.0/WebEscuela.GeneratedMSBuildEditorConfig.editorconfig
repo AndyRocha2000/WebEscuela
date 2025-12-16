@@ -16,20 +16,48 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\andy_\Escritorio\Proyectos\Proyecto\WebEscuela\WebEscuela
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/AlumnoAcciones/CrearInscripcion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWx1bW5vQWNjaW9uZXNcQ3JlYXJJbnNjcmlwY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/AlumnoAcciones/ListaInscripciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWx1bW5vQWNjaW9uZXNcTGlzdGFJbnNjcmlwY2lvbmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Cuenta/CambiarContraseña.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VlbnRhXENhbWJpYXJDb250cmFzZcOxYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Cuenta/CambiarDatosPersonales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VlbnRhXENhbWJpYXJEYXRvc1BlcnNvbmFsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Carreras.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxDYXJyZXJhcy5jc2h0bWw=
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Carreras/AgregarCarrera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxDYXJyZXJhc1xBZ3JlZ2FyQ2FycmVyYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Materias.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxNYXRlcmlhcy5jc2h0bWw=
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Carreras/EditarCarrera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxDYXJyZXJhc1xFZGl0YXJDYXJyZXJhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxVc3Vhcmlvcy5jc2h0bWw=
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Carreras/ListarCarreras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxDYXJyZXJhc1xMaXN0YXJDYXJyZXJhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Materias/AgregarMateria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxNYXRlcmlhc1xBZ3JlZ2FyTWF0ZXJpYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Materias/EditarMateria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxNYXRlcmlhc1xFZGl0YXJNYXRlcmlhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Materias/ListarMaterias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxNYXRlcmlhc1xMaXN0YXJNYXRlcmlhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios/AgregarUsuario.cshtml]
@@ -38,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios/EditarUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxVc3Vhcmlvc1xFZGl0YXJVc3VhcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Gestion/Usuarios/ListarUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblxVc3Vhcmlvc1xMaXN0YXJVc3Vhcmlvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Index.cshtml]
@@ -50,6 +82,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/PreceptorAcciones/GestionarInscripciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJlY2VwdG9yQWNjaW9uZXNcR2VzdGlvbmFySW5zY3JpcGNpb25lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/PreceptorAcciones/GestionarMaterias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJlY2VwdG9yQWNjaW9uZXNcR2VzdGlvbmFyTWF0ZXJpYXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/andy_/Escritorio/Proyectos/Proyecto/WebEscuela/WebEscuela/Pages/Privacy.cshtml]

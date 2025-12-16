@@ -1,0 +1,126 @@
+﻿@page
+@model WebEscuela.Pages.AlumnoAcciones.CrearInscripcionModel
+@{
+    ViewData["Title"] = "Inscripciones";
+}
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5">📖 Inscripción: @Model.CarreraNombre</h1>
+        <span class="badge bg-info text-dark">Ciclo Lectivo 2025</span>
+    </div>
+
+    @* Mensajes de Feedback *@
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                @if (Model.Materias.Any())
+                {
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Materia</th>
+                                <th>Año</th>
+                                <th>Cuatrimestre</th>
+                                <th>Docente</th>
+                                <th>Cupo Disp.</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Materias)
+                            {
+                                <tr>
+                                    <td class="fw-bold">@item.Nombre</td>
+                                    <td>@item.Anio° Año</td>
+                                    <td>@item.Cuatrimestre° Cuat.</td>
+                                    <td>@item.DocenteNombre</td>
+                                    <td>
+                                        <span class="badge @(item.CupoMaximo > 0 ? "bg-success" : "bg-danger")">
+                                            @item.CupoMaximo plazas
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" 
+                                                class="btn btn-primary btn-sm px-4 shadow-sm open-enroll-modal"
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#modalInscripcion"
+                                                data-id="@item.Id"
+                                                data-nombre="@item.Nombre">
+                                            <i class="bi bi-pencil-square me-1"></i> Inscribirme
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="bi bi-book text-muted" style="font-size: 3rem;"></i>
+                        <p class="mt-3 text-muted">No hay materias disponibles para tu carrera en este momento.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@* MODAL DE CONFIRMACIÓN *@
+<div class="modal fade" id="modalInscripcion" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Confirmar Inscripción</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Vas a inscribirte a: <strong id="materiaNombreModal"></strong></p>
+                    <input type="hidden" name="materiaId" id="materiaIdInput" />
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona el Tipo de Cursado:</label>
+                        <select name="tipoCursadoId" class="form-select" required>
+                            <option value="1">Regular</option>
+                            <option value="2">Libre</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar Inscripción</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Script para pasar los datos al modal
+        document.querySelectorAll('.open-enroll-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const nombre = this.getAttribute('data-nombre');
+                document.getElementById('materiaIdInput').value = id;
+                document.getElementById('materiaNombreModal').textContent = nombre;
+            });
+        });
+    </script>
+}

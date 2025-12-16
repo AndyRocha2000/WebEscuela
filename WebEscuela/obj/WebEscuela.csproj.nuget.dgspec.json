@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\webescuela\\WebEscuela.csproj": {}
+    "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela\\WebEscuela.csproj": {}
   },
   "projects": {
     "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela.Repository\\WebEscuela.Repository.csproj": {
@@ -134,14 +134,14 @@
         }
       }
     },
-    "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\webescuela\\WebEscuela.csproj": {
+    "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela\\WebEscuela.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\webescuela\\WebEscuela.csproj",
+        "projectUniqueName": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela\\WebEscuela.csproj",
         "projectName": "WebEscuela",
-        "projectPath": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\webescuela\\WebEscuela.csproj",
+        "projectPath": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela\\WebEscuela.csproj",
         "packagesPath": "C:\\Users\\andy_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\webescuela\\obj\\",
+        "outputPath": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\andy_\\AppData\\Roaming\\NuGet\\NuGet.Config",

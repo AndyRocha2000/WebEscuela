@@ -2,9 +2,10 @@
 {
     public class Docente : Persona
     {
-        public string Titulo { get; set; }
+        public string Titulo { get; set; } = string.Empty;
 
-        public ICollection<Materia> Materias { get; set; }
+        // Navegacion inversa
+        public ICollection<Materia> Materias { get; set; } = new List<Materia>();
 
     }
 }

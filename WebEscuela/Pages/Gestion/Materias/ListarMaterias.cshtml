@@ -1,0 +1,154 @@
+﻿@page
+@model WebEscuela.Pages.Gestion.Materias.ListarMateriasModel
+@using WebEscuela.Service.DTOs
+@{
+    ViewData["Title"] = "Gestión de Materias";
+}
+<div class="container-fluid">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-page="/Gestion/Carreras/ListarCarreras">Lista Carreras</a></li>
+            <li class="breadcrumb-item active">Lista Materias</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        @* ⭐️ TÍTULO DINÁMICO *@
+        <h1 class="display-5">Materias de @Model.CarreraNombre</h1>
+
+        @* ⭐️ ENLACE CREAR (debe pasar el ID de la Carrera para vincular la nueva materia) *@
+        <a asp-page="./AgregarMateria" asp-route-carreraId="@Model.CarreraId" asp-route-carreraNombre="@Model.CarreraNombre" class="btn btn-primary shadow">
+            <i class="bi bi-book me-2"></i> Crear nueva Materia
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="table-responsive">
+        @if (Model.Materias.Any())
+        {
+            <table class="table table-striped table-hover border">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Año</th>
+                        <th>Cuatrimestre</th>
+                        <th>Docente Asignado</th>
+                        <th>Cupo Máximo</th>
+                        <th class="text-center">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @* BUCLE PRINCIPAL: Llena la lista con las Materias *@
+                    @foreach (MateriasListadoDTO item in Model.Materias)
+                    {
+                        <tr>
+                            <td>@item.Nombre</td>
+                            <td>@item.Anio</td>
+                            <td>@item.Cuatrimestre</td>
+                            <td>@item.DocenteNombre</td>
+                            <td>@item.CupoMaximo</td>
+
+                            <td class="text-center">
+                                <div class="dropdown position-static">
+                                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="materiaActions_@item.Id" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-gear-fill"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="materiaActions_@item.Id">
+                                        <li><a class="dropdown-item" asp-page="./EditarMateria" asp-route-materiaId="@item.Id">Modificar</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            @* Boton de Eliminar usa modal unico *@
+                                            <button type="button"
+                                                    class="dropdown-item text-danger delete-btn"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModalBase"
+                                                    data-id="@item.Id"
+                                                    data-nombre="@item.Nombre"
+                                                    data-carreraid="@Model.CarreraId">
+                                                Eliminar
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                No hay materias registradas para esta carrera.
+            </div>
+        }
+    </div>
+
+    @* ⭐️ Modal unico para la Eliminacion de Materia *@
+    <div class="modal fade" id="deleteModalBase" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación de Materia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar la materia
+                    <strong id="materiaNombrePlaceholder"></strong>?
+                    Esta acción es irreversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                    <form id="deleteFormBase" method="post" asp-page-handler="Delete">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Logica JavaScript que llena el Eliminar Materia
+            $('#deleteModalBase').on('show.bs.modal', function (event) {
+                var carreraNombre = "@Model.CarreraNombre";
+
+                var button = $(event.relatedTarget);
+
+                // Datos de la MATERIA: ID y Nombre
+                var materiaId = button.data('id');
+                var materiaNombre = button.data('nombre');
+
+                var carreraId = button.data('carreraid');
+
+                // Inyectar datos en el mensaje de confirmación
+                $('#materiaNombrePlaceholder').text(materiaNombre);
+
+                // Configura el URL para el Post
+                var form = $('#deleteFormBase');
+                form.attr('action', '?handler=Delete&Materiaid=' + materiaId + '&carreraId=' + carreraId + '&carreraNombre=' + carreraNombre);
+            });
+        });
+    </script>
+}

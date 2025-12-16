@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WebEscuela.Repository.Data;
 using Scrutor;
+using WebEscuela.Service.Interfaces;
+using WebEscuela.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,10 @@ builder.Services.AddRazorPages();
 
 // Agregar los servicios
 builder.Services.Scan(scan => scan
-    .FromApplicationDependencies()
-    .AddClasses(classes => classes.InNamespaces("WebEscuela.Service", "WebEscuela.Repository.Repository"))
-    .AsSelf()
+    .FromAssembliesOf(typeof(PersonaService))
+    .AddClasses(classes => classes.InNamespaces("WebEscuela.Service.Services"))
+    .AsMatchingInterface()
     .WithScopedLifetime());
-
 
 // Agregamos autenticacion con cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

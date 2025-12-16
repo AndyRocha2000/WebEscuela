@@ -1,10 +1,15 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio - Gestión Académica";
+    var userRole = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 text-center">
+            <h1 class="display-4 mb-4">Bienvenido al Sistema de Gestión Académica</h1>
+            <p class="lead mb-5">Institución Educativa - Ciclo Lectivo 2025</p>
+        </div>
+    </div>
 </div>

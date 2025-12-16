@@ -1,0 +1,94 @@
+﻿@page
+@model WebEscuela.Pages.Gestion.Materias.EditarMateriaModel
+@{
+    ViewData["Title"] = "Editar de Materia";
+}
+
+<div class="container-fluid mt-4">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-page="./ListarMaterias"
+               asp-route-carreraId="@Model.CarreraId"
+               asp-route-carreraNombre="@Model.CarreraNombre">
+                Materias de @Model.CarreraNombre
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Editar Materia</li>
+    </ol>
+
+    <h1 class="display-5">Modificar Materia</h1>
+    <hr />
+
+    <form method="post" novalidate>
+        <input type="hidden" asp-for="MateriaId" />
+
+        @* Mensajes de error *@
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> @Model.ErrorMessage
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="mb-3">Datos de la Materia</h3>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Nombre"></label>
+                    <input asp-for="Input.Nombre" class="form-control" />
+                    <span asp-validation-for="Input.Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Anio"></label>
+                    <input asp-for="Input.Anio" class="form-control" min="1" max="6" />
+                    <span asp-validation-for="Input.Anio" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Cuatrimestre"></label>
+                    <input asp-for="Input.Cuatrimestre" class="form-control" min="1" max="2" />
+                    <span asp-validation-for="Input.Cuatrimestre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.CupoMaximo"></label>
+                    <input asp-for="Input.CupoMaximo" class="form-control" min="1" />
+                    <span asp-validation-for="Input.CupoMaximo" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                @* ⭐️ Deplagable de Docentes Disponibles *@
+                <div class="form-group mb-3">
+                    <label asp-for="Input.DocenteId"></label>
+                    <select asp-for="Input.DocenteId"
+                            asp-items="Model.Input.DocentesDisponibles"
+                            class="form-control">
+                        <option value="">Seleccione un Docente</option>
+                    </select>
+                    <span asp-validation-for="Input.DocenteId" class="text-danger"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-book me-2"></i> Modificar Materia
+            </button>
+            <a asp-page="./ListarMaterias"
+               asp-route-carreraId="@Model.CarreraId"
+               asp-route-carreraNombre="@Model.CarreraNombre"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>

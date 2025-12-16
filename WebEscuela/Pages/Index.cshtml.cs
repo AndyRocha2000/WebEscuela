@@ -1,23 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebEscuela.Repository.Data;
-using WebEscuela.Repository.Models;
-
-
-using Microsoft.EntityFrameworkCore;
 
 namespace WebEscuela.Pages
 {
     public class IndexModel : PageModel
     {
+        // Solo conservamos el logger
         private readonly ILogger<IndexModel> _logger;
-        private readonly AppDbContext _context;
 
-        public IndexModel(ILogger<IndexModel> logger, AppDbContext context)
+        // Constructor solo con ILogger
+        public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            _context = context;
         }
-
+        public void OnGet()
+        {
+            _logger.LogInformation("Página Index cargada exitosamente.");
+        }
     }
 }

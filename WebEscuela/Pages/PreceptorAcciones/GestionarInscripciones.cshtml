@@ -1,0 +1,85 @@
+﻿@page
+@model WebEscuela.Pages.PreceptorAcciones.GestionarInscripcionesModel
+@{
+    ViewData["Title"] = "Gestión de Inscripciones por Materia";
+}
+<div class="container-fluid mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-page="./GestionarMaterias">Materias</a></li>
+            <li class="breadcrumb-item active">Inscripciones Pendientes</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-6">Pendientes: <span class="text-primary">@Model.MateriaNombre</span></h1>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>DNI Alumno</th>
+                        <th>Nombre Completo</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Tipo Cursado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Inscripciones.Any())
+                    {
+                        @foreach (var insc in Model.Inscripciones)
+                        {
+                            <tr>
+                                <td>@insc.AlumnoDni</td>
+                                <td class="fw-bold">@insc.AlumnoNombre</td>
+                                <td>@insc.FechaInscripcion.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <span class="badge bg-info text-dark">@insc.TipoCursado</span>
+                                </td>
+                                <td class="text-center">
+                                    <form method="post" asp-page-handler="ActualizarEstado" class="d-inline">
+                                        <input type="hidden" name="alumnoId" value="@insc.AlumnoId" />
+                                        <input type="hidden" name="materiaId" value="@insc.MateriaId" />
+
+                                        <div class="btn-group" role="group">
+                                        @* Boton Aceptar (Estado 2) *@
+                                            <button type="submit" name="nuevoEstadoId" value="2" class="btn btn-success btn-sm me-2">
+                                                <i class="bi bi-check-lg"></i> Aceptar
+                                            </button>
+
+                                            @* Boton Rechazar (Estado 3) *@
+                                            <button type="submit" name="nuevoEstadoId" value="3" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-x-lg"></i> Rechazar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-5 text-muted">
+                                <i class="bi bi-inbox-fill display-4 d-block mb-3"></i>
+                                No hay inscripciones pendientes para esta materia.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

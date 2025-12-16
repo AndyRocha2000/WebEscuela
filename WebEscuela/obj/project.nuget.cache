@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OBt2i6Lwr3bIMvGj9VxLl4OH1/P7jUd/VOhIUyAFtY/czYUaPaDxf3JMjBr+oFl7lH+fg3LQVTvkYDKLsbTGAA==",
+  "dgSpecHash": "2V64Wvszp0I/i1tzpM/wIAWCrry5CfM6qCp9F8vBNmHMT+7/d12kyNFMCVBk81cWWCgZ2uemCBUPuLZea1fQBw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\webescuela\\WebEscuela.csproj",
+  "projectFilePath": "C:\\Users\\andy_\\Escritorio\\Proyectos\\Proyecto\\WebEscuela\\WebEscuela\\WebEscuela.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andy_\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\andy_\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.25\\microsoft.data.sqlite.core.6.0.25.nupkg.sha512",

@@ -1,0 +1,103 @@
+﻿@page
+@model WebEscuela.Pages.Gestion.Carreras.AgregarCarreraModel
+@{
+    ViewData["Title"] = "Crear Nueva Carrera";
+}
+
+<div class="container-fluid mt-4">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-page="./ListarCarreras">
+                Lista de Carreras
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Agregar Carrera</li>
+    </ol>
+
+    <h1 class="display-5">Crear Nueva carrera</h1>
+    <hr />
+
+    <form method="post" novalidate>
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> @Model.ErrorMessage
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="mb-3">Datos</h3>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Nombre"></label>
+                    <input asp-for="Input.Nombre" class="form-control" />
+                    <span asp-validation-for="Input.Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Siglas"></label>
+                    <input asp-for="Input.Siglas" class="form-control" />
+                    <span asp-validation-for="Input.Siglas" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Duracion"></label>
+                    <input asp-for="Input.Duracion" class="form-control" min="1" max="6"/>
+                    <span asp-validation-for="Input.Duracion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.TituloOtorgado"></label>
+                    <input asp-for="Input.TituloOtorgado" class="form-control" />
+                    <span asp-validation-for="Input.TituloOtorgado" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="mb-3">Credenciales</h3>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.ModalidadId"></label>
+                    <select asp-for="Input.ModalidadId"
+                            asp-items="Model.Input.ModalidadesDisponibles"
+                            class="form-control">
+                        <option value="">Seleccione una modalidad</option>
+                    </select>
+                    <span asp-validation-for="Input.ModalidadId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.TurnoId"></label>
+                    <select asp-for="Input.TurnoId"
+                            asp-items="Model.Input.TurnosDisponibles"
+                            class="form-control">
+                        <option value="">Seleccione un turno</option>
+                    </select>
+                    <span asp-validation-for="Input.TurnoId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Input.PreceptorId"></label>
+                    <select asp-for="Input.PreceptorId"
+                            asp-items="Model.Input.PreceptoresDisponibles"
+                            class="form-control">
+                        <option value="">Seleccione un preceptor</option>
+                    </select>
+                    <span asp-validation-for="Input.PreceptorId" class="text-danger"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-person-plus-fill me-2"></i> Crear Usuario
+            </button>
+            <a asp-page="./ListarCarreras" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>

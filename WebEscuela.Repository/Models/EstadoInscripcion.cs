@@ -3,9 +3,10 @@
     public class EstadoInscripcion
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
-        public ICollection<Inscripcion> Inscripciones { get; set; }
+        // Navegacion inversa
+        public ICollection<Inscripcion> Inscripciones { get; set; } = new List<Inscripcion>();
 
     }
 }

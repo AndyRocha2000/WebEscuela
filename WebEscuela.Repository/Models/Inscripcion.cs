@@ -2,14 +2,20 @@
 {
     public class Inscripcion
     {
+        // Llaves Primarias
         public int AlumnoId { get; set; }
         public int MateriaId { get; set; }
+
+        // Atributos
         public DateTime FechaInscripcion { get; set; }
+        public int TipoCursadoId { get; set; }
         public int EstadoInscripcionId { get; set; }
 
-        public Alumno Alumno { get; set; }
-        public Materia Materia { get; set; }
-        public EstadoInscripcion EstadoInscripcion { get; set; }
+        // Propiedades de Navegacion
+        public Alumno Alumno { get; set; } = null!;
+        public Materia Materia { get; set; } = null!;
+        public TipoCursado TipoCursado { get; set; } = null!;
+        public EstadoInscripcion EstadoInscripcion { get; set; } = null!;
 
     }
 }
