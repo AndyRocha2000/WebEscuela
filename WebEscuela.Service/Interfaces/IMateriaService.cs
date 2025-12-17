@@ -27,6 +27,9 @@ namespace WebEscuela.Service.Interfaces
         // CONSULTAR TODAS LAS MATERIAS DE UNA CARRERA
         Task<ICollection<MateriasListadoDTO>> GetAllMateriasByCarreraAsync(int Id);
 
+        // CONSULTAR TODAS LAS MATERIAS A LAS CUALES UN ALUMNO SE PUEDE INSCRIBIR POR CARRERA
+        Task<ICollection<MateriasListadoDTO>> GetMateriasDisponiblesByAlumnoAsync(int carreraId, int alumnoId);
+
         // CONSULTAR TODAS LAS MATERIAS SIN DOCENTE
         Task<ICollection<LookupDTO>> GetMateriasSinDocenteAsync();
 

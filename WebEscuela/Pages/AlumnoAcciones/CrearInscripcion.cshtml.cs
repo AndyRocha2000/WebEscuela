@@ -47,7 +47,7 @@ namespace WebEscuela.Pages.AlumnoAcciones
             // Cargar materias de SU carrera
             var Carrera = await _carreraService.GetCarreraByIdAsync(alumno.CarreraId);
             CarreraNombre = Carrera!.Nombre ?? "Tu Carrera";
-            Materias = (await _materiaService.GetAllMateriasByCarreraAsync(alumno.CarreraId)).ToList();
+            Materias = (await _materiaService.GetMateriasDisponiblesByAlumnoAsync(alumno.CarreraId, alumno.Id)).ToList();
 
             return Page();
         }

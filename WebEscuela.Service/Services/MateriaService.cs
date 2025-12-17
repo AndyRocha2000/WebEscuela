@@ -156,7 +156,38 @@ namespace WebEscuela.Service.Services
             return await listaDetalles.ToListAsync();
         }
 
-        
+        // CONSULTAR TODAS LAS MATERIAS A LAS CUALES UN ALUMNO SE PUEDE INSCRIBIR POR CARRERA
+        public async Task<ICollection<MateriasListadoDTO>> GetMateriasDisponiblesByAlumnoAsync(int carreraId, int alumnoId)
+        {
+            // Identificar materias donde el alumno ya tiene una solicitud
+            var materiasConCualquierRegistro = await _context.Inscripciones
+                .Where(i => i.AlumnoId == alumnoId)
+                .Select(i => i.MateriaId)
+                .ToListAsync();
+
+            
+            var materiasDisponibles = await _context.Materias
+                .AsNoTracking()
+                .Include(m => m.Docente)
+                .Include(m => m.Inscripciones)
+                .Where(m => m.CarreraId == carreraId && !materiasConCualquierRegistro.Contains(m.Id))
+                .Select(m => new MateriasListadoDTO
+                {
+                    Id = m.Id,
+                    Nombre = m.Nombre,
+                    Anio = m.Anio,
+                    Cuatrimestre = m.Cuatrimestre,
+                    CupoMaximo = m.CupoMaximo - m.Inscripciones.Count(i => i.EstadoInscripcionId != 3),
+                    DocenteNombre = m.Docente != null ? m.Docente.NombreCompleto : "Sin Asignar"
+                })
+                // Solo se devuelven materias que al menos tengan un cupo
+                .Where(dto => dto.CupoMaximo > 0)
+                .ToListAsync();
+
+            return materiasDisponibles;
+        }
+
+
         // CONSULTAR TODAS LAS MATERIAS SIN DOCENTE
         public async Task<ICollection<LookupDTO>> GetMateriasSinDocenteAsync()
         {
